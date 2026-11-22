@@ -36,9 +36,10 @@ def ganador(jugador,computador):
 
     elif jugador == "piedra" and computador == "tijera":
         return "gana jugador 1"
-        
-    #print("Puntuacion: Jugador 1: ", puntos_jugador,"y jugador 2: ", puntos_aleatorio)
-
+    
+    else:
+        return "respuesta no valida"    
+    
 
 def puntos(puntos_jugador, puntos_aleatorio, resultado):
 
@@ -50,3 +51,30 @@ def puntos(puntos_jugador, puntos_aleatorio, resultado):
         puntos_aleatorio=puntos_aleatorio+1
 
     return puntos_jugador, puntos_aleatorio
+
+while puntos_jugador < 3 and puntos_aleatorio < 3:
+
+    jugador=input("Elija piedra, papel o tijera: ").lower()
+    computador=aleatorio()
+
+    print("Claudio eligio: ", computador)
+
+    resultado=ganador(jugador,computador)
+
+    print(resultado)
+
+    puntos_jugador, puntos_aleatorio = puntos(
+    puntos_jugador,
+    puntos_aleatorio,
+    resultado
+)
+    print("Puntuación es ", "jugador: ", puntos_jugador, "claudio: ", puntos_aleatorio)
+
+
+if puntos_jugador == 3:
+    print("Ganaste la partida")
+
+elif puntos_aleatorio == 3:
+    print("Claudio ganó la partida")
+
+    
