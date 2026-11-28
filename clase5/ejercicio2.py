@@ -24,7 +24,6 @@ print(f"Total de unidades vendidas de café: {total_unidades}")
 
 filtro_ciudad_pago=(df["ciudad"] == "Cali") & (df["metodo_pago"].isin(["Tarjeta","Transferencia"]))
 
-
 cali= df[filtro_ciudad_pago]
 
 print("Metodo de pago en la ciudad de cali",cali["metodo_pago"].value_counts())
@@ -34,3 +33,12 @@ ventas_mayores=df[cantidad]
 resultado=len(ventas_mayores)
 print(f"Ventas con 8 unidades o más: {resultado}")
 
+
+filtro_categoria=(df["categoria"] == "Papelería") & (df["cantidad"]>=8)
+papeleria=df[filtro_categoria][["fecha","producto","cantidad","ciudad"]]
+print(papeleria)
+
+
+df["total"]=df["cantidad"]*df["precio_unitario"]
+bottom=df.sort_values("total").head(1)
+print(bottom[["producto","total"]])
