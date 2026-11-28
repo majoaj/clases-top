@@ -7,4 +7,30 @@ df = pd.read_csv(r"C:\Users\MAJO\Downloads\ventas_tienda.csv")
 #print(df.shape)
 #print(df.columns)
 #print(df.info())
-print(df.describe())
+#print(df.describe())
+
+
+#df[df["producto"]=="Café"]
+#total_cafe=["cantidad"].sum()
+#print(total_cafe)
+
+#print((df["producto"]=="Café").value_counts())
+
+
+filtro_producto = df[df["producto"] == "Café"] 
+total_unidades = filtro_producto["cantidad"].sum() 
+
+print(f"Total de unidades vendidas de café: {total_unidades}")
+
+filtro_ciudad_pago=(df["ciudad"] == "Cali") & (df["metodo_pago"].isin(["Tarjeta","Transferencia"]))
+
+
+cali= df[filtro_ciudad_pago]
+
+print("Metodo de pago en la ciudad de cali",cali["metodo_pago"].value_counts())
+
+cantidad= df["cantidad"]>=8
+ventas_mayores=df[cantidad]
+resultado=len(ventas_mayores)
+print(f"Ventas con 8 unidades o más: {resultado}")
+
